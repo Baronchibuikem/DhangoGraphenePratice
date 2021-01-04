@@ -11,5 +11,5 @@ urlpatterns = [
     path('users/', UsersListView.as_view(), name="users"),
     path("all-riders/", GetAllRidersView.as_view(), name="all-riders"),
     path("all-drivers/", GetAllDriversView.as_view(), name="all-drivers"),
-    path("user/<int:pk>/", GetUserById.as_view(), name="single-user")
+    path("user/<int:pk>/", GetUserById.as_view(), name="user")
 ]

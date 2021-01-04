@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group
 import uuid
+from django.shortcuts import reverse
 
 
 class CustomUser(AbstractUser):
@@ -13,3 +14,6 @@ class CustomUser(AbstractUser):
     def group(self):
         groups = self.groups.all()
         return groups[0].name if groups else None
+
+    def get_absolute_url(self):
+        return reverse("user", kwargs={"pk": self.id})

@@ -4,7 +4,7 @@ from rest_framework.reverse import reverse
 from rest_framework.test import APITestCase
 from trips.models import Trip
 from accounts.models import CustomUser
-from trips.serializers import TripSerializer
+from trips.rest_api.serializers import TripSerializer
 from django.contrib.auth.models import Group
 
 
