@@ -13,40 +13,18 @@ class TripView(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        if user.group == 'driver':
+        print(user.group, "user group")
+        if user.group == 'Driver':
             return Trip.objects.filter(
                 Q(status=Trip.REQUESTED) | Q(driver=user)
             )
-        if user.group == 'rider':
+        if user.group == 'Rider':
             return Trip.objects.filter(rider=user)
         return Trip.objects.none()
 
 
-# class TripView(generics.ListAPIView):
-#     serializer_class = NestedTripSerializer
-#     # queryset = Trip.objects.all()
-
-#     def get_queryset(self):
-#         user = self.request.user
-#         if user.group == 'driver':
-#             return Trip.objects.filter(
-#                  Q(status=Trip.REQUESTED) | Q(driver=user)
-#             )
-#         if user.group == 'rider':
-#             return Trip.objects.filter(rider=user)
-#         return Trip.objects.none()
-
-# class TripDetailView(generics.RetrieveAPIView):
-#     serializer_class = NestedTripSerializer
-#     # queryset = Trip.objects.all()
-#     lookup_url_kwarg = "trip_id"
-
-#     def get_queryset(self):
-#         user = self.request.user
-#         if user.group == 'driver':
-#             return Trip.objects.filter(
-#                  Q(status=Trip.REQUESTED) | Q(driver=user)
-#             )
-#         if user.group == 'rider':
-#             return Trip.objects.filter(rider=user)
-#         return Trip.objects.none()
+class UpdateTripView(generics.UpdateAPIView):
+    lookup_field = 'id'
+    lookup_url_kwarg = 'trip_id'
+    queryset = Trip.objects.all()
+    serializer_class = NestedTripSerializer
