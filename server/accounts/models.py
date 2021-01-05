@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, Group
 import uuid
 from django.shortcuts import reverse
+from django.contrib.auth.hashers import make_password
 
 
 class CustomUser(AbstractUser):
@@ -17,3 +18,10 @@ class CustomUser(AbstractUser):
 
     def get_absolute_url(self):
         return reverse("user", kwargs={"pk": self.id})
+
+    def save(self, *args, **kwargs):
+        if self.is_staff:
+            self.password = self.password
+        else:
+            self.password = make_password(self.password, hasher='default')
+        super().save(*args, **kwargs)

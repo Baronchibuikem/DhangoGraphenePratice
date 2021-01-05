@@ -8,13 +8,13 @@ from accounts.models import CustomUser
 class Trip(models.Model):
     REQUESTED = 'REQUESTED'
     STARTED = 'STARTED'
-    IN_PROGRESS = 'IN_PROGRESS'
+    ACCEPTED = 'ACCEPTED'
     COMPLETED = 'COMPLETED'
 
     STATUSES = (
         (REQUESTED, REQUESTED),
         (STARTED, STARTED),
-        (IN_PROGRESS, IN_PROGRESS),
+        (ACCEPTED, ACCEPTED),
         (COMPLETED, COMPLETED)
     )
 

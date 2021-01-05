@@ -29,11 +29,11 @@ export default function Login() {
     user: state.authentication.user,
   }));
 
-  if (params.isAuthenticated === true && params.user.group === "rider") {
+  if (params.isAuthenticated === true && params.user.group === "Rider") {
     return <Redirect to="/rider-dashboard" />;
   }
 
-  if (params.isAuthenticated === true && params.user.group === "driver") {
+  if (params.isAuthenticated === true && params.user.group === "Driver") {
     return <Redirect to="/driver-dashboard" />;
   }
   return (

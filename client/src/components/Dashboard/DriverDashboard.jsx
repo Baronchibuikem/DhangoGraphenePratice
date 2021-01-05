@@ -4,7 +4,7 @@ import { getTrips } from "../../store/actions/trips";
 import { useSelector, useDispatch } from "react-redux";
 import { GenericCard } from "../../utils/Cards";
 
-function Rider() {
+function Driver() {
   const [trips, setTrips] = useState([]);
 
   const params = useSelector((state) => ({
@@ -32,6 +32,10 @@ function Rider() {
     <div>
       {/* <h1 className="display-1 mt-5 pt-5">{() => getTrips()}</h1> */}
       <div className=" container mt-5 pt-5">
+        <h6 className="text-center">
+          {" "}
+          ...Welcome to RideConfy, you are registered as a driver...
+        </h6>
         <div className="row">
           {params.trips.map((trip) => {
             return (
@@ -55,4 +59,4 @@ function Rider() {
   );
 }
 
-export default Rider;
+export default Driver;

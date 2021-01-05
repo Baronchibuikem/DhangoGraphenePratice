@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'channels',
     'corsheaders',
     'graphene_django',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -163,6 +164,10 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 20,
+    # 'DEFAULT_FILTER_BACKENDS': (
+    #     'django_filters.rest_framework.DjangoFilterBackend',
+
+    # ),
 }
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(hours=20),
