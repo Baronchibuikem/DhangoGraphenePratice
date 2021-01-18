@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'trips',
     'accounts',
-    'channels',
+    # 'channels',
     'corsheaders',
     'graphene_django',
     'django_filters',
