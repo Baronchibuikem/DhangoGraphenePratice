@@ -27,9 +27,9 @@ from django.views.decorators.csrf import csrf_exempt
 # ==================================
 # DJANGO ADMIN custom
 # ==================================
-admin.site.site_header = "Taxi"
-admin.site.site_title = "Taxi Portal"
-admin.site.index_title = "Welcome to Taxi Portal"
+# admin.site.site_header = "Taxi"
+# admin.site.site_title = "Taxi Portal"
+# admin.site.index_title = "Welcome to Taxi Portal"
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -46,16 +46,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/account/', include('accounts.rest_api.urls')),
-    path('api/v1/trip/', include('trips.rest_api.urls', 'trip',)),
-    # for swagger
-    path('swagger(<format>\.json|\.yaml)',
-         schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    path('', schema_view.with_ui('swagger',
-                                 cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc',
-                                       cache_timeout=0), name='schema-redoc'),
     # for graphql
-    path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
+    path("graphql/", csrf_exempt(GraphQLView.as_view(graphiql=True))),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

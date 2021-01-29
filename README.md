@@ -1,9 +1,7 @@
 ## About Project
 
-A web application with two types of users: Drivers and Riders
-Rider's can request for a ride
-Driver's can accept ride request and pick up a rider
+A management software for transportation companies to help in managing their passengers
 
 ### Technologies used
 
-Django, Django_rest, Django-graphene, React, Graphql
+Django, Django-graphene, React, Apollo/Client

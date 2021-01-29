@@ -1,14 +1,15 @@
 import graphene
-from accounts.models import CustomUser
+from django.contrib.auth import get_user_model
 from accounts.graphql_api.types import UserType
 
+CustomUser = get_user_model()
 
 class Query(graphene.ObjectType):
-    all_users = graphene.List(UserType)
-    user_by_id = graphene.Field(UserType, id=graphene.String())
+    allUsers = graphene.List(UserType)
+    userById = graphene.Field(UserType, id=graphene.String())
     user = graphene.Field(UserType)
-    all_drivers = graphene.List(UserType)
-    all_riders = graphene.List(UserType)
+    allDrivers = graphene.List(UserType)
+    allRegistered_passengers = graphene.List(UserType)
 
     def resolve_all_users(self, info):
         """
@@ -40,15 +41,15 @@ class Query(graphene.ObjectType):
         return user
 
     def resolve_all_drivers(self, info):
-        "For fetching all drivers"
+        "For fetching all users with drivers role"
         try:
-            return CustomUser.objects.filter(groups__name="Driver")
+            return CustomUser.objects.filter(role__name="driver")
         except CustomUser.DoesNotExist:
             return None
 
-    def resolve_all_riders(self, info):
-        "For fetching all drivers"
+    def resolve_all_registered_passengers(self, info):
+        "For fetching all users except for those with drivers role"
         try:
-            return CustomUser.objects.filter(groups__name="Rider")
+            return CustomUser.objects.exclude(role__name="driver")
         except CustomUser.DoesNotExist:
             return None

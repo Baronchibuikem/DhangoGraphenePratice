@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'drf_yasg',
     'rest_framework',
-    'trips',
+    'bookings',
     'accounts',
     # 'channels',
     'corsheaders',
@@ -181,10 +181,10 @@ SIMPLE_JWT = {
 # ]
 
 # Whitelisting localhost:3000  because our frontend will be served there
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3001',
+# CORS_ORIGIN_WHITELIST = [
+#     'http://localhost:3001',
 
-]
+# ]
 
 AUTHENTICATION_BACKENDS = [
     'graphql_jwt.backends.JSONWebTokenBackend',
